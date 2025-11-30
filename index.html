@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What's the Area and Perimeter</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--card);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.5rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .tab {
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      color: var(--ink);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    main {
+      max-width: 900px;
+      margin: 1.5rem auto;
+      padding: 0 1rem 3rem;
+    }
+    .slide {
+      background: var(--card);
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+      display: none;
+    }
+    .slide.active { display: block; }
+    .prompt {
+      font-weight: 600;
+      margin: 0.5rem 0;
+      padding: 0.75rem 0.9rem;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+    }
+    .notes {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.75rem;
+    }
+    footer {
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 2rem 1rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --card: #0f172a;
+        --ink: #e5e7eb;
+        --muted: #93a4b6;
+        --accent: #60a5fa;
+      }
+      .prompt { background: #0b1220; border-color: #223049; }
+      header { border-bottom-color: #223049; }
+      .slide { border-color: #223049; }
+      .tab { background: #0b1220; border-color: #223049; color: var(--ink); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>What's the Area and Perimeter</h1>
+    <div class="subtitle">Class prompts from the slide</div>
+    <nav>
+      <button class="tab active" data-target="slide-1">Slide 1</button>
+      <button class="tab" data-target="slide-2">Slide 2</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Slide 1 -->
+    <section id="slide-1" class="slide active" aria-labelledby="slide-1-title">
+      <h2 id="slide-1-title">Slide 1</h2>
+      <p class="prompt">What's the perimeter?</p>
+      <p class="prompt">What's the area?</p>
+      <p class="prompt">What is this shape called?</p>
+
+      <div class="notes" aria-label="Speaker notes">
+        Click to add speaker notes
+      </div>
+    </section>
+
+    <!-- Slide 2 -->
+    <section id="slide-2" class="slide" aria-labelledby="slide-2-title">
+      <h2 id="slide-2-title">Slide 2</h2>
+      <p class="prompt">What's the perimeter?</p>
+      <p class="prompt">What's the area?</p>
+      <p class="prompt">What is this shape called?</p>
+      <p class="prompt">What's the perimeter?</p>
+      <p class="prompt">What's the area?</p>
+
+      <div class="notes" aria-label="Speaker notes">
+        Click to add speaker notes
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Exported from slide text; add shapes or images as needed.
+  </footer>
+
+  <script>
+    // Simple tab toggle for slides
+    const tabs = document.querySelectorAll('.tab');
+    const slides = document.querySelectorAll('.slide');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        slides.forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.getElementById(tab.dataset.target);
+        if (target) target.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
